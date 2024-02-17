@@ -1,0 +1,5 @@
+name "dcubuffer"
+description "Growing @nogc buffer with generic type"
+authors "Kripth"
+license "MIT"
+targetType "library"
