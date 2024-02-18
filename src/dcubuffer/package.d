@@ -1,4 +1,4 @@
-﻿module dcubuffer;
+module dcubuffer;
 
 public import std.system : Endian;
 
