@@ -18,4 +18,4 @@ Zhuo Nengwen
 
 ## Reference
 
-- [VarInt](https://developers.google.com/protocol-buffers/docs/encoding#varints)
+- [VarInt](https://protobuf.dev/programming-guides/encoding/#varints)
