@@ -20,7 +20,7 @@ unittest {
  * Utility container for reading and writing signed and unsigned
  * varints from Google's protocol buffer.
  */
-struct Var(T) if(isIntegral!T && T.sizeof > 1) {
+struct Var(T) if(isIntegral!T) {
 	
 	alias Base = T;
 	
@@ -66,6 +66,10 @@ struct Var(T) if(isIntegral!T && T.sizeof > 1) {
 	}
 	
 }
+
+alias varbyte = Var!byte;
+
+alias varubyte = Var!ubyte;
 
 alias varshort = Var!short;
 
