@@ -216,6 +216,10 @@ class Buffer
     private void[] _data;
     private size_t _rindex, _windex;
 
+    // Special variables for DCU reader/writer.
+    private ubyte _compiler;
+    private ubyte _platform;
+
     /**
 	 * Creates a buffer specifying the chunk size.
 	 * This should be the default constructor for re-used buffers and
@@ -290,6 +294,26 @@ class Buffer
     @property size_t windex() pure nothrow @safe @nogc
     {
         return _windex;
+    }
+
+    @property ubyte compiler() pure nothrow @safe @nogc
+    {
+        return _compiler;
+    }
+
+    @property void compiler(ubyte c) pure nothrow @safe @nogc
+    {
+        _compiler = c;
+    }
+
+    @property ubyte platform() pure nothrow @safe @nogc
+    {
+        return _platform;
+    }
+
+    @property void platform(ubyte p) pure nothrow @safe @nogc
+    {
+        _platform = p;
     }
 
     @property T[] data(T = void)() pure nothrow @trusted @nogc
