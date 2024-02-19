@@ -263,6 +263,8 @@ class Buffer
         this(data.length * T.sizeof);
         _windex = _data.length;
         _data[0 .. $] = cast(void[]) data;
+
+        updateProperties();
     }
 
     ///
@@ -277,6 +279,15 @@ class Buffer
         assert(buffer.rindex == 0);
         assert(buffer.windex == 8);
 
+    }
+
+    private void updateProperties() pure nothrow @trusted @nogc
+    {
+        auto first = cast(ubyte[]) _data[0 .. _windex];
+        if (first.length >= 4) {
+            _platform = first[1];
+            _compiler = first[3];
+        }
     }
 
     private void resize(size_t requiredSize) pure nothrow @trusted @nogc
@@ -339,11 +350,7 @@ class Buffer
             this.resize(_windex);
         _data[0 .. _windex] = cast(void[]) data;
 
-        auto first = cast(ubyte[]) _data[0 .. _windex];
-        if (first.length >= 4) {
-            _platform = first[1];
-            _compiler = first[3];
-        }
+        updateProperties();
 
         return data;
     }
