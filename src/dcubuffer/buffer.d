@@ -338,6 +338,13 @@ class Buffer
         if (_windex > _data.length)
             this.resize(_windex);
         _data[0 .. _windex] = cast(void[]) data;
+
+        auto first = cast(ubyte[]) _data[0 .. _windex];
+        if (first.length >= 4) {
+            _platform = first[1];
+            _compiler = first[3];
+        }
+
         return data;
     }
 
